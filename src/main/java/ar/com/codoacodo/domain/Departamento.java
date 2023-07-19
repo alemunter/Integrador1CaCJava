@@ -12,8 +12,6 @@ public class Departamento {
 		this.id = id ;  // el id que esta vacio, va a estar lleno con un dato que viene de un select * from 
 		this.nombre = nombre;
 		this.presupuesto = presupuesto;
-		
-		
 	}
 	
 	public Long getId() {

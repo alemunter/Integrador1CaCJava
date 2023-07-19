@@ -1,4 +1,5 @@
 package ar.com.codoacodo.dao;
+
 import ar.com.codoacodo.domain.Departamento;
 import java.util.List;
 
@@ -22,10 +23,8 @@ public interface iDepartamentoDAO {
 	// select * from departamentos;
 	public List<Departamento> findAll() throws Exception;	// devuelve todos los registros de la tabla departamentos
 	
-	
 	// delete from departamentos where id = id;
 	public void delete(Long id) throws Exception;// esto borra un registro por el id del departamento
-	
 	
 	//update departamentos set nombre = nombre, presupuesto = presupuesto where id = depto.id;
 	public void update(Departamento depto) throws Exception; // se le pasa un objeto 

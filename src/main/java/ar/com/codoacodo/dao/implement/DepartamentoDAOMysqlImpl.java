@@ -15,8 +15,6 @@ import java.util.ArrayList;
 //remove(elemento)
 // me permite trabajar como si fueran vectores dinamicamente como en js, dependiendo de la memoria
 
-
-
 // en la clase que creamos, heredamos de una interface, la interfaceDAO que tiene los
 //metodos para interactuar con la base
 public class DepartamentoDAOMysqlImpl implements iDepartamentoDAO {

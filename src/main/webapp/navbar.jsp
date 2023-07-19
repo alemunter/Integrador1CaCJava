@@ -10,7 +10,10 @@
           <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Inicio</a>
         </li>
         <li class="nav-item">
-           <a class="nav-link" href="<%=request.getContextPath()%>/FindAllDepartamentoController">Listado</a>
+           <a class="nav-link" href="<%=request.getContextPath()%>/FindAllDepartamentoController">Listado Departamentos</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" href="<%=request.getContextPath()%>/FindAllEmpleadoController">Listado Empleados</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<%=request.getContextPath()%>/nuevo.jsp">Nuevo Departamento</a>
