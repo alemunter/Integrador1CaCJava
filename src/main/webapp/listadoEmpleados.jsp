@@ -1,4 +1,5 @@
 <%@page import="ar.com.codoacodo.domain.Departamento"%>
+<%@page import="ar.com.codoacodo.domain.Empleado"%>
 <%@page import="java.util.List"%>
 <!doctype html>
 <html lang="es">
@@ -13,9 +14,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
-    <title>Departamentos Listado</title>
+    <title>Empleados Listado</title>
   </head>
-	
 	<body>
 		<!-- ACA VA EL NAVBAR  include file="navbar.jsp" %> -->
 		<div class="container bg-ligth">
@@ -26,45 +26,45 @@
 		<main>
 			<div class="container bg-light mt-5">
 				<section>
-					<h1>Listado de departamentos</h1>
+					<h1>Listado de empleados</h1>
 					<table class="table">
 					  <thead>
 					    <tr>
-					      <th scope="col">ID</th>
+					      <th scope="col">DNI</th>
 					      <th scope="col">NOMBRE</th>
-					      <th scope="col">PRESUPUESTO</th>
+					      <th scope="col">APELLIDO</th>
+					      <th scope="col">DEPARTAMENTO</th>
 					      <th scope="col">ACCIONES</th>
-					   
 					    </tr>
 					  </thead>
 					  <% 
 					  	//codigo java
 					  	//obtener el listado desde el request
 					  	//se guardo bajo el nombre de "departamentos"
-					  	List<Departamento> listado = (List<Departamento>)request.getAttribute("listado");
+					  	List<Empleado> listado = (List<Empleado>)request.getAttribute("listado");
 					  %>
 					  <tbody>
 					   <!-- ESTO SE REPITE TANTA CANDTIDAD DE VECES COMO ARTICULOS TENGA -->
 					   <%
-					   	for( Departamento  unDepto : listado) {
+					   	for(Empleado unEmpleado : listado) {
 					   %>
 					    <tr>
-						      <th scope="row"> <%=unDepto.getId()%> </th>
-						      <td><%=unDepto.getNombre() %></td>
-						      <td><%=unDepto.getPresupuesto() %></td>
-						   
+						      <th scope="row"> <%=unEmpleado.getDni() %> </th>
+						      <td><%=unEmpleado.getNombre() %></td>
+						      <td><%=unEmpleado.getApellido() %></td>
+						      <td><%=unEmpleado.getDepto().getNombre() %></td>
 						      <td>
 						      	
 							      	<a class="btn btn-info" 
 							      	   role="button" 
-							      	   href="<%=request.getContextPath()%>/UpdateDepartamentoController?id=<%=unDepto.getId()%>">
+							      	   href="<%=request.getContextPath()%>/UpdateEmpleadoController?id=<%=unEmpleado.getDni()%>">
 							      	   Editar
 							      	</a> | 
 						      		<!-- Button trigger modal -->
 									<button type="button" class="btn btn-danger" 
 										data-bs-toggle="modal" 
 										data-bs-target="#exampleModal" 
-										onclick="setDepartamentoId(<%=unDepto.getId()%>)">
+										onclick="setEmpleadoId(<%=unEmpleado.getDni()%>)">
 									  Eliminar
 									</button>
 							  </td>
@@ -83,9 +83,9 @@
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		    	<form action="<%=request.getContextPath()%>/DeleteDepartamentoController">
-		    	  <input type="hidden" name="idDepto" id="idDepto">
+		    	  <input type="hidden" name="dniEmpleado" id="dniEmpleado">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Eliminar Departamento</h5>
+			        <h5 class="modal-title" id="exampleModalLabel">Eliminar Empleado</h5>
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			      </div>
 			      <div class="modal-body">
@@ -104,7 +104,7 @@
 	
 
 	  <script>
-			function setDepartamentoId(id) {
+			function setEmpleadoDNI(id) {
 				document.getElementById('idDepto').value=id;
 			}
 	  </script>

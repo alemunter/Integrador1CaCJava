@@ -41,7 +41,7 @@ public class FindAllEmpleadoController extends HttpServlet {
 	       }
 	       req.setAttribute("listado", Empleados);
 	      // este bloque de codigo lo vamos a usar en todos lados, redirecciona al listado.jsp 
-	       getServletContext().getRequestDispatcher("/listado.jsp").forward(req, resp);
+	       getServletContext().getRequestDispatcher("/listadoEmpleados.jsp").forward(req, resp);
 		
 	
 	}

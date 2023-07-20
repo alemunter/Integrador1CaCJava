@@ -49,7 +49,7 @@
 					   	for( Departamento  unDepto : listado) {
 					   %>
 					    <tr>
-						      <th scope="row"> <%=unDepto.getId()%> </th>
+						      <th scope="row"> <%=unDepto.getId() %> </th>
 						      <td><%=unDepto.getNombre() %></td>
 						      <td><%=unDepto.getPresupuesto() %></td>
 						   

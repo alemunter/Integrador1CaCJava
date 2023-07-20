@@ -48,7 +48,7 @@ public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 		//-1 necesito la conection a la base
 		Connection connection = AdministradorDeConexiones.getConnection();
 		//2 - arma el statement
-	    String sql = "select * from departamentos";
+	    String sql = "select * from empleados";
 		Statement statement  = connection.createStatement();
 				
 		//3 - obtengo el resulSet
@@ -156,7 +156,7 @@ public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 	private Empleado crearEmpleado(ResultSet resultSet) throws Exception {
 		iDepartamentoDAO departamento = new DepartamentoDAOMysqlImpl();
 		// obtengo el dato del campo id
-		Long DNIBd = resultSet.getLong("id");
+		Long DNIBd = resultSet.getLong("dni");
 		String nombreBd = resultSet.getString("nombre");
 		String apellidoBd = resultSet.getString("apellido");
 		Departamento deptoBd = departamento.getById(resultSet.getLong("dpto_id"));
