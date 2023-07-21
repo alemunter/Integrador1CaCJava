@@ -1,6 +1,5 @@
 package ar.com.codoacodo.controllers;
 
-
 import java.io.IOException;
 import java.util.List;
 
@@ -13,37 +12,40 @@ import jakarta.servlet.http.HttpServletResponse;
 import ar.com.codoacodo.dao.iDepartamentoDAO;
 import ar.com.codoacodo.dao.implement.DepartamentoDAOMysqlImpl;
 import ar.com.codoacodo.domain.Departamento;
+import ar.com.codoacodo.dao.iEmpleadoDAO;
+import ar.com.codoacodo.dao.implement.EmpleadoDAOMysqlImpl;
+import ar.com.codoacodo.domain.Empleado;
 
-@WebServlet("/SearchDepartamentoController")
-public class SearchDepartamentoController extends HttpServlet {
+@WebServlet("/SearchEmpleadoController")
+public class SearchEmpleadoController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//buscar en la db productos por titulo
 		//interface = new class que implementa la interface
-		 iDepartamentoDAO dao = new DepartamentoDAOMysqlImpl();
+		 iEmpleadoDAO dao = new EmpleadoDAOMysqlImpl();
 		
 		//obtengo la clave enviado desde el formulario que esta en navbar.jsp 
-		String clave = req.getParameter("claveBusqueda");
+		Long clave = Long.parseLong(req.getParameter("claveBusqueda"));
 		
 		//FALTAN VALIDACIONES!!!
 		
 		//busco!
-		List<Departamento> depto;
+		List<Empleado> empleados;
 		try {
-			depto = dao.search(clave);
+			empleados = dao.searchByDNI(clave);
 		} catch (Exception e) {
-			depto = List.of();//crea una lista vacia
+			empleados = List.of();//crea una lista vacia
 			e.printStackTrace();
 		}
 		
 		//guardar en el request, los datos que encontre en la busqueda
 		//antes de irme a la nueva pagina: guardo en el request los datos que puede necesitar la JSP
 		//clave, valor
-		req.setAttribute("listado", depto);
+		req.setAttribute("listado", empleados);
 		
 		//este bloque de codigo lo vamos a usar en todos lados
-		getServletContext().getRequestDispatcher("/listadoDepartamentos.jsp").forward(req, resp);
+		getServletContext().getRequestDispatcher("/listadoEmpleados.jsp").forward(req, resp);
 	}
 }

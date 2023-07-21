@@ -32,8 +32,8 @@ public interface iEmpleadoDAO {
 	// insert to Empleados (campo 1..campo2..campo3) values(newEmpleado.campo1....newDepto.campoN)
 	public void create(Empleado newEmpleado) throws Exception;
 	
-	//select * from Empleados where titulo like '%clave%' 
-    public List<Empleado> search(String clave) throws Exception;
+	//select * from Empleados where dni like '%clave%' 
+    public List<Empleado> searchByDNI(Long clave) throws Exception;
 	
 	// crear un method que consulte a la base por el nombre y que devuelva una lista de Empleados
 	// crear un nuevo method que haga update solo al nombre o solo al presupuesto 

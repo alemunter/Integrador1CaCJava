@@ -137,7 +137,7 @@ public class DepartamentoDAOMysqlImpl implements iDepartamentoDAO {
 		Connection connection = AdministradorDeConexiones.getConnection();
 
 		// 2 - arma el statement
-		String sql = "SELECT * FROM DEPARTAMENTOS WHERE NOMBRE LIKE ?";
+		String sql = "SELECT * FROM departamentos WHERE NOMBRE LIKE ?";
 		PreparedStatement statement = connection.prepareStatement(sql);
 
 		//setear el valor que va en remplazo del ?

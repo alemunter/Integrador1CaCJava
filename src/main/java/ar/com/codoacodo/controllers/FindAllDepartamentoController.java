@@ -19,8 +19,6 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/FindAllDepartamentoController")
 
 public class FindAllDepartamentoController extends HttpServlet {
-	//
-	
 	// tienen metodos importantes como es el 
 	//doGet
 	//doPost
@@ -30,7 +28,7 @@ public class FindAllDepartamentoController extends HttpServlet {
 		//interface = new class que implementa la interface
 	     iDepartamentoDAO dao = new DepartamentoDAOMysqlImpl();
 	     List<Departamento> departamentos = new ArrayList<>();
-			
+
 	       try {
 	    	 departamentos = dao.findAll();
 	       } catch (Exception e) {
@@ -38,8 +36,9 @@ public class FindAllDepartamentoController extends HttpServlet {
 	    	 e.printStackTrace(); //  muestra por consola el error 
 	       }
 	       req.setAttribute("listado", departamentos);
-	      // este bloque de codigo lo vamos a usar en todos lados, redirecciona al listado.jsp 
+	      // este bloque de codigo lo vamos a usar en todos lados, redirecciona al listadoDepartamentos.jsp 
 	       getServletContext().getRequestDispatcher("/listadoDepartamentos.jsp").forward(req, resp);
+	       getServletContext().getRequestDispatcher("/nuevoEmpleado.jsp").forward(req, resp);
 	}
 	
 	@Override

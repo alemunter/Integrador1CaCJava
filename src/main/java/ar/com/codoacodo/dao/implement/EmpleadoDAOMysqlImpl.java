@@ -122,12 +122,12 @@ public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 		cerrar(connection);
 	}
 	@Override
-	public List<Empleado> search(String clave) throws Exception {
+	public List<Empleado> searchByDNI(Long clave) throws Exception {
 		// 1 - necesito la Connection
 		Connection connection = AdministradorDeConexiones.getConnection();
 
 		// 2 - arma el statement
-		String sql = "SELECT * FROM EMPLEADOS WHERE NOMBRE LIKE ?";
+		String sql = "SELECT * FROM empleados WHERE dni LIKE ?";
 		PreparedStatement statement = connection.prepareStatement(sql);
 
 		//setear el valor que va en remplazo del ?

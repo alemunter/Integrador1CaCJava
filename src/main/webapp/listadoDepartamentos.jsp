@@ -52,9 +52,7 @@
 						      <th scope="row"> <%=unDepto.getId() %> </th>
 						      <td><%=unDepto.getNombre() %></td>
 						      <td><%=unDepto.getPresupuesto() %></td>
-						   
 						      <td>
-						      	
 							      	<a class="btn btn-info" 
 							      	   role="button" 
 							      	   href="<%=request.getContextPath()%>/UpdateDepartamentoController?id=<%=unDepto.getId()%>">
@@ -68,7 +66,6 @@
 									  Eliminar
 									</button>
 							  </td>
-					    
 					    </tr>
 					   <%
 					   	}
