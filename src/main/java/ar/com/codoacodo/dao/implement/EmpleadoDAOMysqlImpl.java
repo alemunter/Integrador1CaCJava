@@ -106,7 +106,7 @@ public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 		//-1 necesito la conection a la base
 		Connection connection = AdministradorDeConexiones.getConnection();
 		//2 - arma el statement
-		String sql = "insert into departamentos (dni, nombre, apellido, dpto_id) values (?,?,?,?)" ;
+		String sql = "insert into empleados (dni, nombre, apellido, dpto_id) values (?,?,?,?)" ;
 		PreparedStatement statement  = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 		statement.setLong(1,newEmpleado.getDni());
 		statement.setString(2,newEmpleado.getNombre());

@@ -32,7 +32,7 @@ public class SearchDepartamentoController extends HttpServlet {
 		//busco!
 		List<Departamento> depto;
 		try {
-			depto = dao.search(clave);
+			depto = dao.searchAll(clave);
 		} catch (Exception e) {
 			depto = List.of();//crea una lista vacia
 			e.printStackTrace();

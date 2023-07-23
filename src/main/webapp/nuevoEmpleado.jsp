@@ -1,6 +1,7 @@
 <%@ page import="ar.com.codoacodo.domain.Departamento" %>
 <%@ page import="ar.com.codoacodo.domain.Empleado" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 
 <!Doctype html>
 <html>
@@ -51,7 +52,7 @@
 					  <div class="col-md-4">
 					    <label for="validationCustom02" class="form-label">Apellido</label>
 					    <input type="text"
-					    	name="presupuesto" 
+					    	name="apellido" 
 					    	class="form-control" 
 					    	id="validationCustom02"
 					    	value="" 
@@ -60,73 +61,25 @@
 					      Looks good!
 					    </div>
 					  </div>
-					    <div class="col-md-4">
-					    <label for="departamento" class="form-label">Departamento</label>
-					      	<option value="php">PHP</option>
-					        <option value="java">Java</option>
-					        <option value="golang">Golang</option>
-					        <option value="python">Python</option>
-					        <option value="c#">C#</option>
-					        <option value="C++">C++</option>
-					        <option value="erlang">Erlang</option>
-      					</select>
+					  <div class="col-md-4">
+					    <label for="validationCustom02" class="form-label">ID Departamento</label>
+					    <input type="number"
+					    	name="IdDepartamento" 
+					    	class="form-control" 
+					    	id="validationCustom02"
+					    	value="" 
+					    	required>
 					    <div class="valid-feedback">
 					      Looks good!
 					    </div>
 					  </div>
-					 
 					  <div class="col-12">
 					    <button class="btn btn-primary" type="submit">Nuevo</button>
 					  </div>
 					</form>
-					
 				</div>
 			</div>
-			<table class="table">
-					  <thead>
-					    <tr>
-					      <th scope="col">ID</th>
-					      <th scope="col">NOMBRE</th>
-					      <th scope="col">PRESUPUESTO</th>
-					      <th scope="col">ACCIONES</th>
-					   
-					    </tr>
-					  </thead>
-					  <% 
-					  	//codigo java
-					  	//obtener el listado desde el request
-					  	//se guardo bajo el nombre de "departamentos"
-					  	List<Departamento> listado = (List<Departamento>)request.getAttribute("listado");
-					  %>
-					  <tbody>
-					   <!-- ESTO SE REPITE TANTA CANDTIDAD DE VECES COMO ARTICULOS TENGA -->
-					   <%
-					   	for( Departamento  unDepto : listado) {
-					   %>
-					    <tr>
-						      <th scope="row"> <%=unDepto.getId() %> </th>
-						      <td><%=unDepto.getNombre() %></td>
-						      <td><%=unDepto.getPresupuesto() %></td>
-						      <td>
-							      	<a class="btn btn-info" 
-							      	   role="button" 
-							      	   href="<%=request.getContextPath()%>/UpdateDepartamentoController?id=<%=unDepto.getId()%>">
-							      	   Editar
-							      	</a> | 
-						      		<!-- Button trigger modal -->
-									<button type="button" class="btn btn-danger" 
-										data-bs-toggle="modal" 
-										data-bs-target="#exampleModal" 
-										onclick="setDepartamentoId(<%=unDepto.getId()%>)">
-									  Eliminar
-									</button>
-							  </td>
-					    </tr>
-					   <%
-					   	}
-					   %>
-					  </tbody>
-					</table>
 		</main>
 	</body>
+		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>

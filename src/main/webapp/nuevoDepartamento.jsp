@@ -23,9 +23,7 @@
 						action="<%=request.getContextPath()%>/CreateDepartamentoController"
 						method="POST">
 					  <div class="col-md-4">
-					    <label for="validationCustom01" class="form-label">
-					    	ID
-					    </label>
+					    <label for="validationCustom01" class="form-label">ID</label>
 					    <input type="text"
 					    	name="id" 
 					    	class="form-control" 

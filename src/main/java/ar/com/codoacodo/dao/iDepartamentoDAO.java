@@ -33,7 +33,7 @@ public interface iDepartamentoDAO {
 	public void create(Departamento newDepto) throws Exception;
 	
 	//select * from departamentos where titulo like '%clave%' 
-    public List<Departamento> search(String clave) throws Exception;
+    public List<Departamento> searchAll(String clave) throws Exception;
 	
 	// crear un method que consulte a la base por el nombre y que devuelva una lista de departamentos
 	// crear un nuevo method que haga update solo al nombre o solo al presupuesto 

@@ -132,7 +132,7 @@ public class DepartamentoDAOMysqlImpl implements iDepartamentoDAO {
 		 cerrar(connection);
 	}
 	@Override
-	public List<Departamento> search(String clave) throws Exception {
+	public List<Departamento> searchAll(String clave) throws Exception {
 		// 1 - necesito la Connection
 		Connection connection = AdministradorDeConexiones.getConnection();
 
