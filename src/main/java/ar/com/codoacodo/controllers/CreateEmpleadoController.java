@@ -36,10 +36,10 @@ public class CreateEmpleadoController extends HttpServlet {
 		}
 		if(apellido == null || "".equals(apellido)) {
 			errores.add("Nombre vacío");
-		if(dni== null || "".equals(dni)) {
+		if(dni == null || "".equals(dni)) {
 			errores.add("Id vacío");
 		}
-		if(idDepartamento== null || "".equals(idDepartamento)) {
+		if(idDepartamento == null || "".equals(idDepartamento)) {
 			errores.add("Presupuesto vacío");
 		}
 		//agrego las demas validaciones!!!! (uds)
@@ -58,8 +58,8 @@ public class CreateEmpleadoController extends HttpServlet {
 		
 		// si no usamos try catch podemos arriba poner throws Exception
 		try {
-			Departamento d = daoD.getById(Long.parseLong(idDepartamento));
-			Empleado e = new Empleado(Long.parseLong(dni),nombre,apellido,d);
+			//Departamento d = daoD.getById(Long.parseLong(idDepartamento));
+			Empleado e = new Empleado(Long.parseLong(dni),nombre,apellido,Long.parseLong(idDepartamento));
 			daoE.create(e);
 			req.setAttribute("success", List.of("Alta de producto exitosa"));
 		}

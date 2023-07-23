@@ -44,8 +44,6 @@ public class UpdateDepartamentoController extends HttpServlet {
 		
 		//ahora redirect!!!!
 	     getServletContext().getRequestDispatcher("/FindAllDepartamentoController").forward(req, resp);
-		
-		
 	}
 	
 	//cargar el departamento y enviarlo a la jsp que va a editar los datos
@@ -70,7 +68,7 @@ public class UpdateDepartamentoController extends HttpServlet {
 			
 			//redirect
 			//ahora redirect!!!!
-		     getServletContext().getRequestDispatcher("/editar.jsp").forward(req, resp);
+		     getServletContext().getRequestDispatcher("/editarDepartamento.jsp").forward(req, resp);
 		}
 
 }

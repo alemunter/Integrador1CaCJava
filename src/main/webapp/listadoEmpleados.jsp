@@ -64,11 +64,10 @@
 									<button type="button" class="btn btn-danger" 
 										data-bs-toggle="modal" 
 										data-bs-target="#exampleModal" 
-										onclick="setEmpleadoId(<%=unEmpleado.getDni()%>)">
+										onclick="setEmpleadoDNI(<%=unEmpleado.getDni()%>)">
 									  Eliminar
 									</button>
 							  </td>
-					    
 					    </tr>
 					   <%
 					   	}
@@ -82,7 +81,7 @@
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
-		    	<form action="<%=request.getContextPath()%>/DeleteDepartamentoController">
+		    	<form action="<%=request.getContextPath()%>/DeleteEmpleadoController">
 		    	  <input type="hidden" name="dniEmpleado" id="dniEmpleado">
 			      <div class="modal-header">
 			        <h5 class="modal-title" id="exampleModalLabel">Eliminar Empleado</h5>
@@ -103,7 +102,7 @@
 	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	  <script>
 			function setEmpleadoDNI(id) {
-				document.getElementById('idDepto').value=id;
+				document.getElementById('dni').value=id;
 			}
 	  </script>
 </html>

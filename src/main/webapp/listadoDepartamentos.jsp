@@ -87,6 +87,7 @@
 			      </div>
 			      <div class="modal-body">
 			        ¿Confirma que desea eliminar? 
+			        ATENCION: SE ELIMINARAN LOS EMPLEADOS DEL DEPARTAMENTO
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

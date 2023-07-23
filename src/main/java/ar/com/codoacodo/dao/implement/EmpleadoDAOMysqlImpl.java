@@ -22,11 +22,11 @@ import java.util.ArrayList;
 public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 	
 	@Override
-	public Empleado getById(Long id) throws Exception{
+	public Empleado getById(Long dni) throws Exception{
 		//-1 necesito la conection a la base
 		Connection connection = AdministradorDeConexiones.getConnection();
 		//2 - arma el statement
-		String sql = "select * from departamentos where id = " + id;
+		String sql = "select * from empleado where dni = " + dni;
 		Statement statement  = connection.createStatement();
 		
 		//3 - obtengo el resulSet
@@ -69,15 +69,40 @@ public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 	}
 
 	@Override
-	public void delete(Long id) throws Exception {
-	   //-1 necesito la conection a la base
+	public List<Empleado> findAllByDepartamento(Long deptoId) throws Exception {
+		//-1 necesito la conection a la base
 		Connection connection = AdministradorDeConexiones.getConnection();
 		//2 - arma el statement
-	     String sql = "DELETE FROM empleados WHERE ID=" + id;
-	 	 Statement statement  = connection.createStatement();
+	    String sql = "SELECT * FROM empleados WHERE DPTO_ID = " + deptoId;
+		Statement statement  = connection.createStatement();
+				
+		//3 - obtengo el resulSet
+		ResultSet resultset = statement.executeQuery(sql);
+		// El resultset devuelve un registro de una tabla 
+	     // primero verifico si hay datos 
+		    // creo una lista de departamentos
+			List<Empleado> empleados = new ArrayList<Empleado>();	
+			
+			// mientras encontremos resultados de la base 
+			while (resultset.next()){
+				Empleado e = this.crearEmpleado(resultset);
+				empleados.add(e);
+			}
+			cerrar(connection);
+		   // devolvemos empleados
+		   return empleados; 
+	}
+		   
+	@Override
+	public void delete(Long id) throws Exception {
+		//-1 necesito la conection a la base
+		Connection connection = AdministradorDeConexiones.getConnection();
+		//2 - arma el statement
+	    String sql = "DELETE FROM empleados WHERE dni=" + id;
+	 	Statement statement  = connection.createStatement();
 	 	//3 -devuelve un entero devuelve 1 o 0, pero no hace falta confirmar para este caso 
-		  statement.executeUpdate(sql);
-		  cerrar(connection);
+		statement.executeUpdate(sql);
+		cerrar(connection);
 		 
 	}
 
@@ -154,14 +179,12 @@ public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 	}
 	
 	private Empleado crearEmpleado(ResultSet resultSet) throws Exception {
-		iDepartamentoDAO departamento = new DepartamentoDAOMysqlImpl();
+		iDepartamentoDAO daoD = new DepartamentoDAOMysqlImpl();
 		// obtengo el dato del campo id
 		Long DNIBd = resultSet.getLong("dni");
 		String nombreBd = resultSet.getString("nombre");
 		String apellidoBd = resultSet.getString("apellido");
-		Departamento deptoBd = departamento.getById(resultSet.getLong("dpto_id"));
+		Departamento deptoBd = daoD.getById(resultSet.getLong("dpto_id"));
 		return new Empleado(DNIBd,nombreBd,apellidoBd,deptoBd);
 	}
-	// implementar el nuevo metodo que busca por el nombre y que devuelve una lista de departamentos
-
 }

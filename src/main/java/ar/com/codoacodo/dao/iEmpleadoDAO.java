@@ -23,6 +23,8 @@ public interface iEmpleadoDAO {
 	// select * from Empleados;
 	public List<Empleado> findAll() throws Exception;	// devuelve todos los registros de la tabla Empleados
 	
+	public List<Empleado> findAllByDepartamento(Long deptoId) throws Exception; // devuelve todos los registros de la tabla Empleados por departamento
+	
 	// delete from Empleados where dni = dni;
 	public void delete(Long id) throws Exception;// esto borra un registro por el id del Empleado
 	

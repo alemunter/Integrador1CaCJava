@@ -15,27 +15,20 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/DeleteDepartamentoController")
-public class DeleteDepartamentoController extends HttpServlet{
+@WebServlet("/DeleteEmpleadoController")
+public class DeleteEmpleadoController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Long idDepto = Long.parseLong(req.getParameter("idDepto"));//viene como String -> Long.parseLong()
+		Long dni = Long.parseLong(req.getParameter("dniEmpleado"));//viene como String -> Long.parseLong()
 
 		//interface = new class que implementa la interface
-		iDepartamentoDAO daoD = new DepartamentoDAOMysqlImpl();
 		iEmpleadoDAO daoE = new EmpleadoDAOMysqlImpl();		
 		//eliminar
 		try {
-			List<Empleado> empleados = daoE.findAllByDepartamento(idDepto);
-			if (!empleados.isEmpty()) {
-				for( Empleado  unEmpleado : empleados) {
-					daoE.delete(unEmpleado.getDni());
-				}
-			}
-			daoD.delete(idDepto);
+			daoE.delete(dni);
 			//mensaje de exito
-			req.setAttribute("success", List.of("Se he eliminado el producto con id:" + idDepto));
+			req.setAttribute("success", List.of("Se he eliminado el producto con id:" + dni));
 		} catch (Exception e) {
 			e.printStackTrace();
 			//mensaje de error

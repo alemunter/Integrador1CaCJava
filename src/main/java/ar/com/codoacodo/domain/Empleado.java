@@ -12,6 +12,12 @@ public class Empleado {
 		this.apellido = apellido;
 		this.depto = depto;
 	}
+	public Empleado(Long dni, String nombre, String apellido, Long deptoID) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.depto.setId(deptoID); 
+	}
 
 	public Long getDni() {
 		return dni;

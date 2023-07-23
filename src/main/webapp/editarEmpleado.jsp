@@ -1,15 +1,14 @@
-<%@ page import="ar.com.codoacodo.domain.Departamento" %>
-<%@ page import="ar.com.codoacodo.domain.Empleado" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-
+<%@page import="ar.com.codoacodo.domain.Empleado"%>
+<%
+	Empleado e = (Empleado)request.getAttribute("empleado"); // levanto el departamento que viene del controller
+%>
 <!Doctype html>
 <html>
 		<head>
 		 <!-- Required meta tags -->
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Nuevo Empleado</title>
+		<title>Editar Empleado</title>
 		 <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
 	</head>
@@ -18,12 +17,15 @@
 	   		<jsp:include page="navbar.jsp"/>
 	   </div>
 		<main class="container mt-5">
-			<h1>Nuevo Empleado</h1>
+			<h1>Editar Empleado</h1>
 			<div class="row mt-5">
 				<div class="col-12">
 					<form class="row g-3 needs-validation" 
-						action="<%=request.getContextPath()%>/CreateEmpleadoController"
+						action="<%=request.getContextPath()%>/UpdateEmpleadoController"
 						method="POST">
+					  <div class="col-md-0">
+					    <input type="hidden" name="id" value="<%=e.getDni()%>">
+					  </div>
 					  <div class="col-md-4">
 					    <label for="validationCustom01" class="form-label">DNI</label>
 					    <input type="number"
@@ -73,12 +75,12 @@
 					    </div>
 					  </div>
 					  <div class="col-12">
-					    <button class="btn btn-primary" type="submit">Nuevo</button>
+					    <button class="btn btn-primary" type="submit">Editar</button>
 					  </div>
 					</form>
 				</div>
 			</div>
 		</main>
 	</body>
-		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>
