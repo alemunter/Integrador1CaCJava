@@ -36,7 +36,7 @@ public class DeleteEmpleadoController extends HttpServlet{
 		}//ctrl+t
 		
 		//ahora redirect!!!!
-		getServletContext().getRequestDispatcher("/FindAllDepartamentoController").forward(req, resp);
+		getServletContext().getRequestDispatcher("/FindAllEmpleadoController").forward(req, resp);
 		
 		
 	}

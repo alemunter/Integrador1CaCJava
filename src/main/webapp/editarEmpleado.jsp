@@ -1,6 +1,14 @@
-<%@page import="ar.com.codoacodo.domain.Empleado"%>
+<%@ page import="ar.com.codoacodo.domain.Departamento" %>
+<%@ page import="ar.com.codoacodo.domain.Empleado" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+
 <%
 	Empleado e = (Empleado)request.getAttribute("empleado"); // levanto el departamento que viene del controller
+	System.out.println(e.getDni());
+	System.out.println(e.getNombre());
+	System.out.println(e.getApellido());
+	System.out.println(e.getDepto().getId());
 %>
 <!Doctype html>
 <html>
@@ -23,16 +31,13 @@
 					<form class="row g-3 needs-validation" 
 						action="<%=request.getContextPath()%>/UpdateEmpleadoController"
 						method="POST">
-					  <div class="col-md-0">
-					    <input type="hidden" name="id" value="<%=e.getDni()%>">
-					  </div>
 					  <div class="col-md-4">
 					    <label for="validationCustom01" class="form-label">DNI</label>
 					    <input type="number"
 					    	name="dni" 
 					    	class="form-control" 
 					    	id="validationCustom01" 
-					    	value="" 
+					    	value="<%=e.getDni()%>" 
 					    	required>
 					    <div class="valid-feedback">
 					      Looks good!
@@ -44,7 +49,7 @@
 					    	name="nombre" 
 					    	class="form-control" 
 					    	id="validationCustom02"
-					    	value="" 
+					    	value="<%=e.getNombre()%>" 
 					    	required>
 					    <div class="valid-feedback">
 					      Looks good!
@@ -56,23 +61,29 @@
 					    	name="apellido" 
 					    	class="form-control" 
 					    	id="validationCustom02"
-					    	value="" 
+					    	value="<%=e.getApellido()%>" 
 					    	required>
 					    <div class="valid-feedback">
 					      Looks good!
 					    </div>
 					  </div>
-					  <div class="col-md-4">
-					    <label for="validationCustom02" class="form-label">ID Departamento</label>
-					    <input type="number"
-					    	name="IdDepartamento" 
-					    	class="form-control" 
-					    	id="validationCustom02"
-					    	value="" 
-					    	required>
-					    <div class="valid-feedback">
-					      Looks good!
-					    </div>
+					  <div class="container mt-4">
+					  <% 
+					  	List<Departamento> listado = (List<Departamento>)request.getAttribute("listado");
+					  %>
+					    <label for="selectDepartamento" class="form-label">Selecciona un elemento:</label>
+					    <select name="IdDepartamento" class="form-select" id="selectDepartamento" >
+						    <%
+						    if (!listado.isEmpty()){
+						   		for( Departamento  unDepto : listado) { 
+						   			if (unDepto.getId().equals(e.getDepto().getId())) { %>
+						      			<option value="<%=unDepto.getId()%>" selected> <%=unDepto.getNombre() %> </option>
+						      		<% }else { %>
+						      			<option value="<%=unDepto.getId()%>"> <%=unDepto.getNombre() %> </option>
+						   		<% 		}
+						   			}
+						   	}%>
+					    </select>
 					  </div>
 					  <div class="col-12">
 					    <button class="btn btn-primary" type="submit">Editar</button>

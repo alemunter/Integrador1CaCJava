@@ -20,7 +20,27 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/CreateEmpleadoController")
 public class CreateEmpleadoController extends HttpServlet {
-
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//interface = new class que implementa la interface
+	     iDepartamentoDAO dao = new DepartamentoDAOMysqlImpl();
+	     List<Departamento> departamentos = new ArrayList<>();
+	     
+	       try {
+	    	 departamentos = dao.findAll();
+	    	 for (Departamento depto : departamentos) {
+	    		 System.out.println(depto.toString());
+	    	 }
+	       } catch (Exception e) {
+	    	 // TODO Auto-generated catch block
+	    	 e.printStackTrace(); //  muestra por consola el error 
+	       }
+	       req.setAttribute("listado", departamentos);
+	        
+	      // este bloque de codigo lo vamos a usar en todos lados, redirecciona al listadoDepartamentos.jsp 
+	       getServletContext().getRequestDispatcher("/nuevoEmpleado.jsp").forward(req, resp);
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//capturo los parametros que viene en el request enviado por el form
@@ -28,38 +48,29 @@ public class CreateEmpleadoController extends HttpServlet {
 		String nombre= req.getParameter("nombre");//name de input
 		String apellido= req.getParameter("apellido");//name de input
 		String idDepartamento = req.getParameter("IdDepartamento");//name de input
-		
-		//validaciones!
-		List<String> errores = new ArrayList<>();
-		if(nombre == null || "".equals(nombre)) {
-			errores.add("Nombre vacío");
-		}
-		if(apellido == null || "".equals(apellido)) {
-			errores.add("Nombre vacío");
-		if(dni == null || "".equals(dni)) {
-			errores.add("Id vacío");
-		}
-		if(idDepartamento == null || "".equals(idDepartamento)) {
-			errores.add("Presupuesto vacío");
-		}
-		//agrego las demas validaciones!!!! (uds)
-		if(!errores.isEmpty()) {
-			req.setAttribute("errors", errores);
-			//vuelvo a la jsp con la lista de errores cargadas 
-			getServletContext().getRequestDispatcher("/nuevoEmpleado.jsp").forward(req, resp);
-			return;
-		}
 
-		//interface = new class que implementa la interface
-		iDepartamentoDAO daoD = new DepartamentoDAOMysqlImpl();
 		iEmpleadoDAO daoE = new EmpleadoDAOMysqlImpl();
+		iDepartamentoDAO daoD = new DepartamentoDAOMysqlImpl();
 		
 		// buscamos datos del departamento por id
-		
-		// si no usamos try catch podemos arriba poner throws Exception
+		Departamento d = null;
 		try {
-			//Departamento d = daoD.getById(Long.parseLong(idDepartamento));
-			Empleado e = new Empleado(Long.parseLong(dni),nombre,apellido,Long.parseLong(idDepartamento));
+			d = daoD.getById(Long.parseLong(idDepartamento));
+			System.out.println(d.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//Empleado e = new Empleado(Long.parseLong(dni),nombre,apellido,Long.parseLong(idDepartamento));
+		Empleado e = new Empleado(Long.parseLong(dni),nombre,apellido,d);
+		
+		//debug
+		System.out.println(e.getDni());
+		System.out.println(e.getNombre());
+		System.out.println(e.getApellido());
+		System.out.println(e.getDepto().getId());
+		
+		try {
 			daoE.create(e);
 			req.setAttribute("success", List.of("Alta de producto exitosa"));
 		}
@@ -70,5 +81,4 @@ public class CreateEmpleadoController extends HttpServlet {
 		//ahora redirect!!!!
 		getServletContext().getRequestDispatcher("/FindAllEmpleadoController").forward(req, resp);
 	}
-}
 }

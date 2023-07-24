@@ -60,17 +60,20 @@
 					      Looks good!
 					    </div>
 					  </div>
-					  <div class="col-md-4">
-					    <label for="validationCustom02" class="form-label">ID Departamento</label>
-					    <input type="number"
-					    	name="IdDepartamento" 
-					    	class="form-control" 
-					    	id="validationCustom02"
-					    	value="" 
-					    	required>
-					    <div class="valid-feedback">
-					      Looks good!
-					    </div>
+					  <div class="container mt-4">
+					  <% 
+					  	List<Departamento> listado = (List<Departamento>)request.getAttribute("listado");
+					  %>
+					    <label for="selectDepartamento" class="form-label">Selecciona un elemento:</label>
+					    <select name="IdDepartamento" class="form-select" id="selectDepartamento" >
+						    <%
+						    if (!listado.isEmpty()){
+						   		for( Departamento  unDepto : listado) { %>
+						      		<option value="<%=unDepto.getId()%>"> <%=unDepto.getNombre() %> </option>
+						   		<%}
+						    }
+						      %>
+					    </select>
 					  </div>
 					  <div class="col-12">
 					    <button class="btn btn-primary" type="submit">Nuevo</button>
@@ -80,5 +83,5 @@
 			</div>
 		</main>
 	</body>
-		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>

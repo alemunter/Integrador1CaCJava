@@ -24,19 +24,19 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="nav-link" href="<%=request.getContextPath()%>/nuevoDepartamento.jsp">Nuevo Departamento</a>
-            <a class="nav-link" href="<%=request.getContextPath()%>/nuevoEmpleado.jsp">Nuevo Empleado</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/CreateEmpleadoController">Nuevo Empleado</a>
           </div>
         </li>
       </ul>
       <div class="d-flex w-75 justify-content-end"> 
 	      <form class="d-flex" action="<%=request.getContextPath()%>/SearchDepartamentoController">
-		        <input  name="claveBusqueda"  class="form-control me-2" type="search" placeholder="Buscar Nombre Depto" aria-label="Search">
+		        <input  name="claveBusqueda"  class="form-control me-2" type="search" placeholder="Buscar Nombre Depto" aria-label="Search" required>
 		        <button class="btn btn-outline-success" type="submit">Buscar</button>
 	      </form> 
       </div>
       <div class="d-flex w-75 justify-content-end"> 
 	      <form class="d-flex" action="<%=request.getContextPath()%>/SearchEmpleadoController">
-		        <input  name="claveBusqueda"  class="form-control me-2" type="search" placeholder="Buscar DNI Empleado" aria-label="Search">
+		        <input  name="claveBusqueda"  class="form-control me-2" type="search" placeholder="Buscar DNI Empleado" aria-label="Search" required>
 		        <button class="btn btn-outline-success" type="submit">Buscar</button>
 	      </form> 
       </div>

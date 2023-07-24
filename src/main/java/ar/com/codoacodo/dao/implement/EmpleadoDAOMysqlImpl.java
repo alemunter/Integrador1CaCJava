@@ -26,7 +26,7 @@ public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 		//-1 necesito la conection a la base
 		Connection connection = AdministradorDeConexiones.getConnection();
 		//2 - arma el statement
-		String sql = "select * from empleado where dni = " + dni;
+		String sql = "select * from empleados where dni = " + dni;
 		Statement statement  = connection.createStatement();
 		
 		//3 - obtengo el resulSet
@@ -136,7 +136,7 @@ public class EmpleadoDAOMysqlImpl implements iEmpleadoDAO {
 		statement.setLong(1,newEmpleado.getDni());
 		statement.setString(2,newEmpleado.getNombre());
 		statement.setString(3,newEmpleado.getApellido());
-		statement.setDouble(3,newEmpleado.getDepto().getId());
+		statement.setDouble(4,newEmpleado.getDepto().getId());
 		//3 -devuelve un entero devuelve 1 o 0, pero no hace falta confirmar para este caso 
 		statement.execute();
 		

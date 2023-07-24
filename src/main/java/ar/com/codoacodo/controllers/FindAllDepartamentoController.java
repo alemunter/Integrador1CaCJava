@@ -38,39 +38,12 @@ public class FindAllDepartamentoController extends HttpServlet {
 	       req.setAttribute("listado", departamentos);
 	        
 	      // este bloque de codigo lo vamos a usar en todos lados, redirecciona al listadoDepartamentos.jsp 
-	       getServletContext().getRequestDispatcher("/listadoDepartamentos.jsp").forward(req, resp);
+	       getServletContext().getRequestDispatcher("/listadoDepartamentos2.jsp").forward(req, resp);
+	       //getServletContext().getRequestDispatcher("/nuevoEmpleado.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}
-	
-	/*	
-	// version de consola 
-	public static void main(String[] args) {
-		//interface = new class que implementa la interface
-		iDepartamentoDAO dao = new DepartamentoDAOMysqlImpl();
-		
-		List<Departamento> departamentos;
-		// si no usamos try catch podemos arriba poner throws Exception
-		try {
-		   departamentos = dao.findAll();
-		}
-		catch(Exception e) {
-			//e.printStackTrace();
-			departamentos= null;
-		}
-		if (departamentos != null) {
-			for(Departamento aux : departamentos) {
-				System.out.println(aux.toString());
-				System.out.println("--------------------------------");
-			}
-			
-			//System.out.println(d);
-		}else {
-			System.err.println("No hay registros en la tabla departamentos");
-		}
-		
-	} */
 }

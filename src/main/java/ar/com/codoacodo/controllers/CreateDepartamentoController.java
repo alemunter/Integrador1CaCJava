@@ -26,7 +26,7 @@ public class CreateDepartamentoController extends HttpServlet {
 		String presupuesto = req.getParameter("presupuesto");//name de input
 		
 		
-		//validaciones!
+		//validaciones
 		List<String> errores = new ArrayList<>();
 		if(nombre == null || "".equals(nombre)) {
 			errores.add("Nombre vacío");

@@ -1,6 +1,7 @@
 package ar.com.codoacodo.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -20,25 +21,46 @@ import ar.com.codoacodo.domain.Empleado;
 public class SearchEmpleadoController extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NumberFormatException{
 		
 		//buscar en la db productos por titulo
 		//interface = new class que implementa la interface
 		 iEmpleadoDAO dao = new EmpleadoDAOMysqlImpl();
+		 List<Empleado> empleados = null;
+		 List<String> errores = new ArrayList<>();
+		try {
+			//obtengo la clave enviado desde el formulario que esta en navbar.jsp 
+			Long clave = Long.parseLong(req.getParameter("claveBusqueda"));
+			if(clave == null || "".equals(clave)) {
+				errores.add("Nombre vacío");
+			}
+			empleados = dao.searchByDNI(clave);
+		} catch (Exception e) {
+			empleados = List.of();//crea una lista vacia
+			e.printStackTrace();
+			getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+		}
 		
-		//obtengo la clave enviado desde el formulario que esta en navbar.jsp 
-		Long clave = Long.parseLong(req.getParameter("claveBusqueda"));
+		//validaciones
+		/*List<String> errores = new ArrayList<>();
+		if(clave == null || "".equals(clave)) {
+			errores.add("Nombre vacío");
+		}
+		if(!errores.isEmpty()) {
+			req.setAttribute("errors", errores);
+			//vuelvo a la jsp con la lista de errores cargadas 
+			getServletContext().getRequestDispatcher("/nuevoDepartamento.jsp").forward(req, resp);
+			return;
+		}*/
 		
-		//FALTAN VALIDACIONES!!!
-		
-		//busco!
-		List<Empleado> empleados;
+		/*//busco!
+		List<Empleado> empleados = null;
 		try {
 			empleados = dao.searchByDNI(clave);
 		} catch (Exception e) {
 			empleados = List.of();//crea una lista vacia
 			e.printStackTrace();
-		}
+		}*/
 		
 		//guardar en el request, los datos que encontre en la busqueda
 		//antes de irme a la nueva pagina: guardo en el request los datos que puede necesitar la JSP
