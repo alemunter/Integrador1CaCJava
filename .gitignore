@@ -1,2 +1,37 @@
-/target/
-/bin/
+<!-- <div class="container mt-4">
+					    <label for="exampleSelect" class="form-label">Selecciona un elemento:</label>
+					    <%
+					    if (!listado.isEmpty()){
+					   		for( Departamento  unDepto : listado) {
+					   %>
+					    <select class="form-select" id="exampleSelect">
+					      <option value="<%=unDepto.getId()%>"> <%=unDepto.getNombre() %> </option>
+					      <!-- Agrega más opciones aquí -->
+					      <%
+					   		}
+					    }
+					      %>
+					    </select>
+
+
+
+        //validaciones!
+		List<String> errores = new ArrayList<>();
+		if(nombre == null || "".equals(nombre)) {
+			errores.add("Nombre vacío");
+		}
+		if(apellido == null || "".equals(apellido)) {
+			errores.add("Nombre vacío");
+		if(dni == null || "".equals(dni)) {
+			errores.add("Id vacío");
+		}
+		if(idDepartamento == null || "".equals(idDepartamento)) {
+			errores.add("Presupuesto vacío");
+		}
+		//agrego las demas validaciones!!!! (uds)
+		/*if(!errores.isEmpty()) {
+			req.setAttribute("errors", errores);
+			//vuelvo a la jsp con la lista de errores cargadas
+			getServletContext().getRequestDispatcher("/nuevoEmpleado.jsp").forward(req, resp);
+			return;
+		}*/
